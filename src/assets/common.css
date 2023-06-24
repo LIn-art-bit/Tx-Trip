@@ -1,6 +1,27 @@
 body {
     font-size: 14px;
+    position: absolute;
+}
+html {
+    overflow-y: scroll;
 }
 :root {
-    --primary-color: #ff9854
+    --primary-color: #ff9854;
+    --van-tab-active-text-color: var(--primary-color)!important;
+    --van-tabs-bottom-bar-color: var(--primary-color)!important;
+    --van-search-left-icon-color: var(--primary-color)!important;
+    --tjc-theme-linear-gradient: linear-gradient(90deg, #fa8c1d, #fcaf3f);
+    overflow-y: auto;
+    overflow-x: hidden;
 }
+.page-top {
+   height: 100vh;
+   background-color: #fff;
+   position: relative;
+   z-index: 9;
+   overflow-y: auto;
+}
+body {
+    width: 100vw;
+    overflow: hidden;
+  }

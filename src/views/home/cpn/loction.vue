@@ -1,6 +1,6 @@
 <template>
     <div class="location">
-        <div class="city" @click="toCity">广州</div>
+        <div class="city" @click="toCity">{{ currentCity.cityName }}</div>
         <div class="position" @click="getPosition">
             <span>我的位置</span>
             <img src="@\assets\img\home\icon_location.png" alt="">
@@ -9,7 +9,9 @@
 </template>
 
 <script setup>
+import { storeToRefs } from "pinia";
 import {useRouter} from "vue-router"
+import useCity from "../../../store/modules/city";
 const router = useRouter()
 const getPosition = () => {
     navigator.geolocation.getCurrentPosition(res => {
@@ -25,6 +27,9 @@ const getPosition = () => {
 const toCity = () => {
     router.push("/city")
 }
+// 
+const cityStore = useCity()
+const { currentCity } = storeToRefs(cityStore)
 </script>
 
 <style scoped>

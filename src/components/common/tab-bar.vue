@@ -46,15 +46,16 @@ const clickTabItem = (index) => {
 <style scoped>
 .tab-bar {
     border-top: 2px solid #d5d3d3;
-    position: fixed;
     width: 100%;
-    left: 0;
-    bottom: 0;
     height: 50px;
     background-color: #f5f3f3;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 .tab-bar-item {
     display: flex;
