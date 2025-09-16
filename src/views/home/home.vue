@@ -24,6 +24,37 @@
   import { watch } from 'vue';
   const homeStore = useHome()
   const {ifBottom, ifSearchShow} = useScroll()
+  
+  // 1. 潜在的内存泄露 - 没有清理定时器
+  let timer = setInterval(() => {
+    console.log('定时更新数据')
+    homeStore.fetchHomeList()
+  }, 5000)
+  
+  // 2. 数组访问越界风险
+  function getFirstItem(list) {
+    return list[0].name  // 没有检查list是否存在或是否为空
+  }
+  
+  // 3. 异步操作没有错误处理
+  async function loadData() {
+    const data = await homeStore.fetchHotSuggests()
+    // 假设API永远成功，没有处理失败情况
+    console.log('数据加载成功', data)
+  }
+  
+  // 4. 无限循环风险
+  function processItems(items) {
+    let i = 0
+    while (i < items.length) {
+      if (items[i].skip) {
+        continue  // 忘记增加i，可能导致无限循环
+      }
+      console.log(items[i])
+      i++
+    }
+  }
+  
  watch(ifBottom, (newValue) => {
   if(newValue) {
     homeStore.fetchHomeList().then(() => {
